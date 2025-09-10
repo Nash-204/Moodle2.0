@@ -36,11 +36,7 @@
 }
 
 .block_gamification .gamification-user-summary .summary-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     font-size: 28px;
-    height: 28px;
     line-height: 1;
 }
 
@@ -89,11 +85,9 @@
     background: #fafafa;
 }
 
-.block_gamification .gamification-table tbody tr {
-    transition: background 0.2s ease;
-}
 .block_gamification .gamification-table tbody tr:hover {
     background: #f1f1f1;
+    transition: background 0.2s ease;
 }
 
 .block_gamification .gamification-table tbody tr.highlight {
@@ -110,21 +104,18 @@
     font-weight: bold;
 }
 
-/* Profile (avatar) column */
-.block_gamification .gamification-table td.profile-col,
-.block_gamification .gamification-table th.profile-col {
+/* Profile column */
+.block_gamification .gamification-table td.profile-col {
     text-align: center;
-    width: 45px;        /* keep narrow */
-    padding-right: 4px; /* reduce gap */
+    width: 45px;
+    padding-right: 4px;
 }
 
-/* User (fullname) column */
-.block_gamification .gamification-table td.name-col,
-.block_gamification .gamification-table th.name-col {
+/* Name column */
+.block_gamification .gamification-table td.name-col {
     text-align: left;
-    padding-left: 4px;  /* pull closer to avatar */
+    padding-left: 4px;
 }
-
 
 /* ================================
    Scrollbar Styling
@@ -145,9 +136,8 @@
 }
 
 /* ================================
-   XP Form + Buttons
+   XP Form
 ================================ */
-/* XP Form container */
 .block_gamification .gamification-givexp-form {
     margin-top: 16px;
     padding: 15px;
@@ -155,35 +145,42 @@
     border-radius: 10px;
     background: #f9fafc;
     box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-    max-width: 500px;
+    width: 100%;
+    max-width: 600px;
     margin-left: auto;
     margin-right: auto;
-    text-align: center;
 }
 
-/* Remove clunky Moodle form labels */
-.block_gamification .gamification-givexp-form .fitem {
-    margin-bottom: 10px;
-}
-.block_gamification .gamification-givexp-form .fitem .fitemtitle,
-.block_gamification .gamification-givexp-form .form-label,
-.block_gamification .gamification-givexp-form .form-description {
-    display: none !important;
+/* Row wrapper */
+.block_gamification .gamification-givexp-form .form-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
 }
 
-/* Wrapper for positioning */
+/* Autocomplete wrapper */
 .block_gamification .autocomplete-wrapper {
     position: relative;
-    display: inline-block;
-    width: 100%;
-    max-width: 300px; /* same as your input’s width */
+    flex: 1;
+    min-width: 250px;  /* slightly wider than 200px */
+    max-width: 400px;  /* optional, to prevent it getting too long */
 }
 
-/* Suggestions dropdown */
+/* Make search input fill wrapper */
+.block_gamification .autocomplete-wrapper input[type="text"] {
+    width: 100%;       /* ✅ input spans full wrapper */
+    box-sizing: border-box;
+}
+
+/* Suggestions dropdown matches input width */
 .block_gamification .autocomplete-suggestions {
     position: absolute;
-    top: 100%; /* right below input */
+    top: 100%;
     left: 0;
+    width: 100%;       /* ✅ now same as input */
     background: #fff;
     border: 1px solid #ccc;
     border-radius: 6px;
@@ -191,14 +188,10 @@
     max-height: 200px;
     overflow-y: auto;
     z-index: 9999;
-
-    /* ✅ force same width as parent (input) */
-    width: 100%;
-    box-sizing: border-box; 
+    box-sizing: border-box;
     font-size: 0.9rem;
 }
 
-/* Suggestion item */
 .block_gamification .autocomplete-item {
     padding: 8px 10px;
     cursor: pointer;
@@ -209,28 +202,24 @@
 }
 
 /* XP input */
-.block_gamification .gamification-givexp-form input[name="points"] {
+.block_gamification .xp-number {
     padding: 8px 12px;
     border-radius: 6px;
     border: 1px solid #ccc;
     font-size: 0.95rem;
     width: 100px;
-    margin: 12px auto;
-    display: block;
+    text-align: center;
 }
 
 /* Buttons row */
-.block_gamification .gamification-givexp-form .fgroup {
+.block_gamification .gamification-givexp-form .buttons {
     display: flex;
     justify-content: center;
     gap: 12px;
-    margin: 15px 0;
 }
 
-/* Give XP (blue) */
-.block_gamification .gamification-givexp-form input[name="give"] {
-    background: #0073e6;
-    color: #fff;
+/* General button */
+.block_gamification .gamification-givexp-form .btn {
     border: none;
     border-radius: 6px;
     padding: 8px 16px;
@@ -238,43 +227,41 @@
     cursor: pointer;
     transition: background 0.2s ease;
 }
-.block_gamification .gamification-givexp-form input[name="give"]:hover {
+
+/* Give XP */
+.block_gamification .gamification-givexp-form .btn-primary {
+    background: #0073e6;
+    color: #fff;
+}
+.block_gamification .gamification-givexp-form .btn-primary:hover {
     background: #005bb5;
 }
 
-/* Take XP (red) */
-.block_gamification .gamification-givexp-form input[name="take"] {
+/* Take XP */
+.block_gamification .gamification-givexp-form .btn-danger {
     background: #dc3545;
     color: #fff;
-    border: none;
-    border-radius: 6px;
-    padding: 8px 16px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background 0.2s ease;
 }
-.block_gamification .gamification-givexp-form input[name="take"]:hover {
+.block_gamification .gamification-givexp-form .btn-danger:hover {
     background: #b02a37;
 }
 
-/* Export button */
+/* Export button row */
 .block_gamification .gamification-export-row {
     text-align: center;
     margin-top: 15px;
 }
 .block_gamification .gamification-export-row .btn {
-    padding: 8px 16px;
-    border-radius: 6px;
     background: #808080;
     color: #fff;
-    font-weight: 600;
-    text-decoration: none;
 }
 .block_gamification .gamification-export-row .btn:hover {
     background: #606060;
 }
 
-/* Toast popup */
+/* ================================
+   Toast popup
+================================ */
 .gamification-toast {
     position: fixed;
     bottom: 20px;

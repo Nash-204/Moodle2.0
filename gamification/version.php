@@ -28,7 +28,7 @@ defined('MOODLE_INTERNAL') || die();
 
 
 $plugin->component = 'block_gamification';
-$plugin->version = 20240905124; // YYYYMMDDXX.
+$plugin->version = 20240905127; // YYYYMMDDXX.
 $plugin->requires = 2022041900; // Moodle 4.0.5 minimum 
 $plugin->maturity = MATURITY_STABLE;
 

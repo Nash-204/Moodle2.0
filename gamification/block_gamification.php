@@ -31,7 +31,7 @@ class block_gamification extends block_base {
         $this->content->text .= $renderer->render_give_xp_form();
         $this->content->text .= $renderer->render_toast_js();
 
-        // ✅ Toast notification if available
+        // Toast notification 
         $toastmsg = get_user_preferences('block_gamification_toast', '');
         if (!empty($toastmsg)) {
             $this->content->text .= "

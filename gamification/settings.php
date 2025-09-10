@@ -1,12 +1,13 @@
 <?php
 defined('MOODLE_INTERNAL') || die();
 
-if ($hassiteconfig) {
-    $settings = new admin_settingpage(
-        'block_gamification',
-        get_string('pluginname', 'block_gamification')
-    );
+// Define settings page for the block.
+$settings = new admin_settingpage(
+    'block_gamification',
+    get_string('pluginname', 'block_gamification')
+);
 
+if ($ADMIN->fulltree) {
     // ======================
     // Core XP
     // ======================
@@ -37,7 +38,9 @@ if ($hassiteconfig) {
         PARAM_INT
     ));
 
+    // ======================
     // Forum
+    // ======================
     $settings->add(new admin_setting_configtext(
         'block_gamification/xp_forumdiscussion',
         get_string('xp_forumdiscussion', 'block_gamification'),
@@ -54,7 +57,9 @@ if ($hassiteconfig) {
         PARAM_INT
     ));
 
+    // ======================
     // Assignment
+    // ======================
     $settings->add(new admin_setting_configtext(
         'block_gamification/xp_assignment',
         get_string('xp_assignment', 'block_gamification'),
@@ -63,7 +68,9 @@ if ($hassiteconfig) {
         PARAM_INT
     ));
 
+    // ======================
     // Profile
+    // ======================
     $settings->add(new admin_setting_configtext(
         'block_gamification/xp_profilepic',
         get_string('xp_profilepic', 'block_gamification'),
@@ -72,7 +79,9 @@ if ($hassiteconfig) {
         PARAM_INT
     ));
 
+    // ======================
     // Lesson
+    // ======================
     $settings->add(new admin_setting_configtext(
         'block_gamification/xp_lesson',
         get_string('xp_lesson', 'block_gamification'),
@@ -81,7 +90,9 @@ if ($hassiteconfig) {
         PARAM_INT
     ));
 
+    // ======================
     // Workshop
+    // ======================
     $settings->add(new admin_setting_configtext(
         'block_gamification/xp_peerassessment',
         get_string('xp_peerassessment', 'block_gamification'),
@@ -90,7 +101,9 @@ if ($hassiteconfig) {
         PARAM_INT
     ));
 
+    // ======================
     // Glossary
+    // ======================
     $settings->add(new admin_setting_configtext(
         'block_gamification/xp_glossary',
         get_string('xp_glossary', 'block_gamification'),
@@ -99,7 +112,9 @@ if ($hassiteconfig) {
         PARAM_INT
     ));
 
+    // ======================
     // Database
+    // ======================
     $settings->add(new admin_setting_configtext(
         'block_gamification/xp_database',
         get_string('xp_database', 'block_gamification'),
@@ -108,12 +123,14 @@ if ($hassiteconfig) {
         PARAM_INT
     ));
 
+    // ======================
     // Wiki
+    // ======================
     $settings->add(new admin_setting_configtext(
         'block_gamification/xp_wiki',
         get_string('xp_wiki', 'block_gamification'),
         get_string('xp_wiki_desc', 'block_gamification'),
-        15, 
+        15,
         PARAM_INT
     ));
 
@@ -124,7 +141,4 @@ if ($hassiteconfig) {
         8,
         PARAM_INT
     ));
-
-    // Register under Block settings
-    $ADMIN->add('blocksettings', $settings);
 }

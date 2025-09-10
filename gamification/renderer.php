@@ -99,7 +99,8 @@ class block_gamification_renderer extends plugin_renderer_base {
             'onsubmit' => 'return validateXpForm(this);'
         ]);
 
-        // Autocomplete search field
+        // === Row 1: User search + XP input ===
+        $html .= html_writer::start_div('form-row');
         $html .= '<div class="autocomplete-wrapper">';
         $html .= '<input type="text" id="usersearch" placeholder="' .
             get_string('chooseuser', 'block_gamification') .
@@ -107,26 +108,24 @@ class block_gamification_renderer extends plugin_renderer_base {
         $html .= '<input type="hidden" name="userid" id="userid">';
         $html .= '</div>';
 
-        // XP input
-        $html .= html_writer::start_div('gamification-form-row');
         $html .= html_writer::empty_tag('input', [
             'type' => 'number',
             'name' => 'points',
-            'value' => '10',
             'min' => '1',
-            'class' => 'xp-input'
+            'class' => 'xp-input xp-number',
+            'placeholder' => get_string('enterpoints', 'block_gamification') 
         ]);
+
         $html .= html_writer::end_div();
 
-        // Action buttons
-        $html .= html_writer::start_div('gamification-actions');
+        // === Row 2: Buttons ===
+        $html .= html_writer::start_div('form-row buttons');
         $html .= html_writer::empty_tag('input', [
             'type' => 'submit',
             'name' => 'action',
             'value' => get_string('givexp', 'block_gamification'),
             'class' => 'btn btn-primary'
         ]);
-        $html .= ' ';
         $html .= html_writer::empty_tag('input', [
             'type' => 'submit',
             'name' => 'action',
@@ -136,9 +135,12 @@ class block_gamification_renderer extends plugin_renderer_base {
         ]);
         $html .= html_writer::end_div();
 
-        // Export button
+        $html .= html_writer::end_tag('form');
+        $html .= html_writer::end_div();
+
+        // === Export button (separate row) ===
         $exporturl = new \moodle_url('/blocks/gamification/export.php');
-        if (has_capability('block/gamification:view', \context_system::instance())) {
+        if (has_capability('block/gamification:view', $this->page->context)) {
             $html .= html_writer::div(
                 html_writer::link($exporturl, get_string('exportcsv', 'block_gamification'), [
                     'class' => 'btn btn-secondary gamification-export'
@@ -146,9 +148,6 @@ class block_gamification_renderer extends plugin_renderer_base {
                 'gamification-export-row'
             );
         }
-
-        $html .= html_writer::end_tag('form');
-        $html .= html_writer::end_div();
 
         // JavaScript for AJAX live search
         $html .= "
@@ -191,14 +190,12 @@ class block_gamification_renderer extends plugin_renderer_base {
                     });
             });
 
-            // Close suggestions when clicking outside
             document.addEventListener('click', function(e) {
                 if (suggestionBox && !searchInput.contains(e.target) && !suggestionBox.contains(e.target)) {
                     suggestionBox.remove();
                 }
             });
 
-            // Close suggestions on Escape key
             searchInput.addEventListener('keydown', function(e) {
                 if (e.key === 'Escape' && suggestionBox) {
                     suggestionBox.remove();
@@ -248,5 +245,4 @@ class block_gamification_renderer extends plugin_renderer_base {
         </script>
         ";
     }
-
 }

@@ -13,6 +13,7 @@ $string['exportcsv'] = 'Export CSV';
 $string['givexp'] = 'Give XP';
 $string['takexp'] = 'Take XP';
 $string['chooseuser'] = 'Choose a user...';
+$string['enterpoints'] = 'Enter XP';
 
 // Validation messages.
 $string['val_user_points'] = 'Please select a user and enter XP.';
@@ -22,8 +23,11 @@ $string['val_points'] = 'Please enter a valid XP amount.';
 // Notifications.
 $string['xpgiven'] = 'Successfully given {$a} XP.';
 $string['xptaken'] = 'Successfully taken {$a} XP';
-$string['xpearnedtoast'] = '🎉 You earned {$a->points} XP for {$a->reason}!';
 $string['confirmtakexp'] = 'Are you sure you want to take XP from this user?';
+$string['messageprovider:xpnotification'] = 'Gamification XP earned notifications';
+$string['xpearnedsubject'] = 'XP Earned!';
+$string['xpearnedfull'] = '🎉 You earned {$a->points} XP for {$a->reason}. Keep it up!';
+$string['xpearnedsmall'] = '🎉 You Earned {$a->points} XP for {$a->reason}';
 
 // Reasons (observer messages).
 $string['reason_quiz'] = 'submitting a quiz';
@@ -79,11 +83,5 @@ $string['xp_wiki_desc'] = 'XP for creating a wiki page.';
 
 $string['xp_wikiupdate'] = 'Wiki page updated';
 $string['xp_wikiupdate_desc'] = 'XP for updating a wiki page.';
-
-// Messaging provider strings.
-$string['messageprovider:xpnotification'] = 'Gamification XP earned notifications';
-$string['xpearnedsubject'] = 'XP Earned!';
-$string['xpearnedfull'] = '🎉 You earned {$a->points} XP for {$a->reason}. Keep it up!';
-$string['xpearnedsmall'] = 'Earned {$a->points} XP for {$a->reason}';
 
 
